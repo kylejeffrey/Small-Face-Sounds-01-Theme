@@ -1,4 +1,4 @@
-<header>
+<header class="header">
   <h1>{{ shop.name }}</h1>
 
   <ul>
@@ -7,7 +7,7 @@
     {%- endfor %}
   </ul>
 
-  {% if settings.show_search %}
+  {% if section.settings.show_search %}
     <form action="/search">
       <input type="search" name="q">
       <button type="submit">Search</button>
@@ -15,20 +15,28 @@
   {% endif %}
 </header>
 
+<style>
+  .header {
+    background: {{ section.settings.bg}};
+  }
+</style>
+
+{% stylesheet %}
+  .header {
+    padding: 20px;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  console.log('hey, from header!');
+{% endjavascript %}
+
 {% schema %}
 {
   "name": "Header",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_search",
-      "label": "Show Search Form?"
-    },
-    {
-      "type": "color",
-      "id": "bg",
-      "label": "Background Color"
-    }
+    { "type": "checkbox", "id": "show_search", "label": "Show Search Form?" },
+    { "type": "color", "id": "bg", "label": "Background Color" }
   ]
 }
 {% endschema %}
