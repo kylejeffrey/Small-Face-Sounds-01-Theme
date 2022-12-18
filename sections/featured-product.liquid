@@ -1,0 +1,47 @@
+{% assign product = all_products[section.settings.product] %}
+
+<div class="featured-product">
+  <h2>{{ section.settings.heading }}</h2>
+  <h3>{{ product.title }}</h3>
+  <a href="{{ product.url }}">View product</a>
+</div>
+
+<style>
+  .featured-product {
+      background: {{section.settings.bg}};
+  }
+</style>
+
+{% stylesheet %}
+  .header {
+    padding: 20px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "heading text"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured product"
+    }
+  ]
+}
+{% endschema %}
